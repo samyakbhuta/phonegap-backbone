@@ -1,0 +1,61 @@
+.sprite(@pos: 0px 0px, @gradient: transparent) {
+	background: url('../media/images/sprite.png') @pos no-repeat, @gradient;
+}
+
+.sprite-half-size {
+	background-size: 500px 302px;
+}
+
+.sprite-half(@pos: 0px 0px) {
+	.sprite-half-size;
+	.sprite(@pos);
+}
+
+.sprite-tab-icons-hd {
+	width: 560px;
+	height: 100px;
+	.sprite(0px -10px);
+}
+
+.sprite-tab-icons {
+	width: 280px;
+	height: 50px;
+	.sprite(0px -110px);
+}
+
+.sprite-arrow {
+	min-width: 20px;
+	height: 20px;
+	.sprite(0px -584px);
+}
+
+.sprite-back {
+	width: 7px;
+	height: 11px;
+	.sprite(0px -516px);
+}
+
+.sprite-delete {
+	width: 21px;
+	height: 20px;
+	.sprite(0px -547px);
+}
+
+.sprite-bar {
+ 	height: 23px;
+ 	.sprite(0px -307px);
+ 	background-size: 5000px 604px;
+ 	background-repeat: repeat-x;
+}
+
+.sprite-i {
+ 	width: 23px;
+ 	height: 23px;
+ 	.sprite(0px -443px);
+}
+
+.sprite-logo {
+ 	width: 195px;
+ 	height: 46px;
+ 	.sprite(-704px -189px);
+}

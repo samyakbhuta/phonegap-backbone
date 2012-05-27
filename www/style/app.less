@@ -1,0 +1,725 @@
+@import 'sprite.less';
+
+/* RADIUS HELPERS */
+
+	.radius(@radiustl: 5px, @radiustr: 5px, @radiusbr: 5px, @radiusbl: 5px)
+	{
+		-webkit-border-radius: @radiustl;
+		-webkit-border-top-left-radius: @radiustl;
+		-webkit-border-top-right-radius: @radiustr;
+		-webkit-border-bottom-right-radius: @radiusbr;
+		-webkit-border-bottom-left-radius: @radiusbl;
+	}
+
+	.radius-all(@radius: 5px)
+	{
+		.radius(@radius, @radius, @radius, @radius);
+	}
+
+/* TOUCH HACKS */
+
+	* {
+		-webkit-touch-callout: none; /* prevent callout to copy image, etc when tap to hold */
+		-webkit-text-size-adjust: none; /* prevent webkit from resizing text to fit */
+		-webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+		-webkit-user-select: none; /* prevent copy paste, to allow, change 'none' to 'text' */
+	}
+
+	input, textarea, select{
+		-webkit-user-select: auto;
+		-webkit-touch-callout: auto;
+	}
+
+/* DOCUMENT */
+
+	html {
+		height: 100%;
+	}
+
+	html, body {
+		margin: 0px;
+		background: #fff;
+		font-family: Helvetica, Arial;
+	}
+
+/* GENERAL HTML STYLING */
+
+	strong {
+		color: #00aeef;
+	}
+
+	em {
+		font-size: 120%;
+	}
+
+	h2 {
+		font-size: 15px;
+		padding: 0px;
+		margin-bottom: -13px;
+		margin-left: -15px;
+		margin-right: -15px;
+		padding-left: 15px;
+		padding-right: 15px;
+		padding-top: 15px;
+		border-top: 1px solid #ccc;
+	}
+
+	hr {
+		display: block;
+		height: 1px;
+		border: 0px;
+		width: 100%;
+		margin-left: -15px;
+		margin-right: -15px;
+		margin-top: 25px;
+		padding-left: 15px;
+		padding-right: 15px;
+		background-color: #ccc;
+	}
+
+	h2:first-child {
+		border-top: 0px;
+		padding-top: 0px;
+	}
+
+	.arrow-link() {
+		display: block;
+		.sprite-arrow;
+		padding-left: 25px;
+		line-height: 20px;
+		font-size: 15px;
+	}
+
+	.button-gray() {
+		border: 1px solid #c2c6c6;
+		background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#e2e3e5));
+		color: #00aeef;
+	}
+
+	.button-default {
+		border: 1px solid #03aaee;
+		background: -webkit-gradient(linear, left top, left bottom, from(#6ad2f7), to(#00aeef), color-stop(0.5, #6ad2f7));
+		color: #fff;
+	}
+
+	a {
+		color: #000;
+		text-decoration: none;
+		font-weight: bold;
+		font-size: 13px;
+		&.inline {
+			font-size: 100%;
+			background: none;
+			display: inline;
+			padding: 0px;
+			line-height: 100%;
+			color: #ff6100;
+		}
+		&:active, &.active {
+			color: #ea650d;
+		}
+		&.link {
+			.arrow-link;
+		}
+		&.info {
+			display: block;
+			width: 23px;
+			height: 23px;
+			margin-top: 14px;
+			width: 100%;
+			text-indent: -10000px;
+			position: relative;
+			&:before {
+				content: '';
+				display: block;
+				position: absolute;
+				.sprite-i;
+				left: 100%;
+				margin-left: -23px;
+				.radius-all(12px);
+			}
+			&:active, &.active {
+				&:before {
+					-webkit-box-shadow: 0px 0px 8px 3px #91d9f8;
+				}
+			}
+		}
+		&.button {
+			display: block;
+			padding: .6em 10px;
+			.radius-all(.3em);
+			font-weight: bold;
+			font-size: 16px;
+			text-decoration: none;
+			text-align: center;
+			margin: 5px 0px 5px 0px;
+			.button-default();
+			&:active, &.active {
+				.button-gray();
+			}
+			&.gray {
+				.button-gray();
+				&:active, &.active {
+					.button-default();
+				}
+			}
+		}
+		&.half {
+			margin: 5px 25% 0px 25%;
+		}
+		/* DUMMY ELEMENT
+		   Serves as placeholder for "keyboard-blur" and has black top corners for making page transitions look OK */
+		&.hidden, &.hidden:after {
+			display: block;
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			height: 46px;
+			width: 100%;
+			z-index: 0;
+			background: #000;
+			box-sizing: border-box;
+		}
+		&.hidden:after {
+			content: '';
+			border: 1px solid #d5d5d4;
+			.radius(0.5em, 0.5em, 0, 0);
+			background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#f6f6f6));
+		}
+	}
+
+/* HELPER TAGS */
+	code {
+		display: none;
+	}
+
+/* VIDEO */
+	.video-placeholder {
+		height: 163px;
+		width: 100%;
+		margin-bottom: 10px;
+		background: #000;
+		position: relative;
+		> .video, > button {
+			position: relative;
+			z-index: 2;
+			width: 100%;
+			height: 100%;
+			display: block;
+		}
+		> button {
+			position: absolute;
+			background: transparent;
+			border: none;
+			z-index: 3;
+			display: none;
+		}
+	}
+
+	.android .video-placeholder > button {
+		display: block;
+	}
+
+/* LOGO LINK */
+	a.logo {
+		display: block;
+		.sprite-logo;
+		text-indent: -10000px;
+		margin-left: 10px;
+		margin-bottom: 20px;
+	}
+
+/* CLEAR */
+	.clear {
+		clear: both;
+		text-indent: -10000px;
+		width: 0px;
+		height: 0px;
+	}
+
+/* COLUMN LAYOUT */
+	.d50-50, .d60-40, .d40-60, .d70-30, .d30-70 {
+		&.d60-40, &.d40-60 {
+		 	> * {
+				width: 40%;
+			}
+		}
+		&.d60-40 > *:first-child, &.d40-60 > *:last-child {
+			width: 60%;
+		}
+		&.d70-30, &.d30-70 {
+			> * {
+				width: 30%;
+			}
+		}
+		&.d70-30 > *:first-child, &.d30-70 > *:last-child {
+			width: 70%;
+		}
+		&.d50-50 > * > a.button {
+			.button-gray();
+			&:active, &.active {
+				.button-default();
+			}
+		}
+		> * {
+			> *, > a {
+				margin-left: 5px;
+				margin-right: 5px;
+			}
+			&:first-child {
+				> *, > a {
+					margin-left: 0px;
+				}
+			}
+			&:last-child {
+				> *, > a {
+					margin-right: 0px !important;
+				}
+			}
+			width: 50%;
+			float: left;
+			border: 0px !important;
+			display: table-cell;
+		}
+	}
+
+/* STATES */
+	.if-profile-available {
+		display: none !important;
+	}
+
+/* PAGES */
+
+	@-webkit-keyframes fadeIn {
+		from	{ opacity: 0; }
+		to		{ opacity: 1; }
+	}
+
+	@-webkit-keyframes fadeOut {
+		from	{ opacity: 1; }
+		to		{ opacity: 0; }
+	}
+
+	@-webkit-keyframes slideFromLeft {
+	    from { -webkit-transform: translateX(-100%); }
+	    to { -webkit-transform: translateX(0%); }
+	}
+
+	@-webkit-keyframes slideToLeft {
+	    from { -webkit-transform: translateX(0%); }
+	    to { -webkit-transform: translateX(-100%); }
+	}
+
+	@-webkit-keyframes slideFromRight {
+	    from { -webkit-transform: translateX(100%); }
+	    to { -webkit-transform: translateX(0%); }
+	}
+
+	@-webkit-keyframes slideToRight {
+	    from { -webkit-transform: translateX(0%); }
+	    to { -webkit-transform: translateX(100%); }
+	}
+
+	.android {
+		/* Mainly because of keyboard issues:
+			- No webkit-transforms
+			- Position absolute instead of fixed
+			- Opacity/Zindex instead of transformX 100%
+		*/
+		article, article.active {
+			-webkit-transform: none !important;
+		}
+		article {
+			position: absolute;
+			opacity: 0;
+			z-index: 0;
+			&.active {
+				opacity: 1;
+				z-index: 1;
+			}
+		}
+		&.android-4 {
+			article section ul li {
+				-webkit-transform: none !important;
+			}
+		}
+	}
+
+	article {
+		opacity: 1;
+		position: fixed;
+		background-color: #000;
+		background: -webkit-gradient(linear, left 16, left top, color-stop(0.05, rgb(255,255,255)), color-stop(0.53, rgb(255,255,255)), color-stop(0.77, rgb(0,0,0)));
+		table-layout: fixed;
+		height: 3000px;
+		width: 100%;
+		display: table;
+		overflow: hidden;
+		-webkit-transform: translateZ(0);
+		-webkit-transform: translateX(100%);
+													/* SLIDE EFFECTS UNDER CONSTRUCTION
+													-webkit-backface-visibility: hidden;
+													-webkit-animation-fill-mode: forwards !important;
+													&.fromLeft, &.fromRight {
+														-webkit-animation: slideFromLeft ease-out 350ms;
+													}
+													&.toLeft {
+														-webkit-animation: slideToLeft ease-out 350ms;
+													}
+													&.toRight {
+														-webkit-animation: slideToRight ease-out 350ms;
+													}
+													*/
+		&.active {
+			-webkit-transform: translateX(0%);
+			/* Lists don't render well while scrolling without this, both iOS and Android */
+			section ul li {
+				-webkit-transform: translateZ(0);
+				&.search {
+					/* Otherwise input element gets disabled on Android */
+					-webkit-transform: none !important;
+				}
+			}
+		}
+		> div {
+			display: table-row;
+		}
+		header, section, footer {
+			display: table-cell;
+			background: #fff;
+		}
+		header {
+			border: 1px solid #d5d5d4;
+			color: #000;
+			height: 44px;
+			font-weight: bold;
+			.radius(0.5em, 0.5em, 0, 0);
+			background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#f6f6f6));
+			h1 {
+				text-align: center;
+				font-size: 19px;
+				margin: 0px;
+				line-height: 44px;
+			}
+			a {
+				width: 58px;
+				height: 44px;
+				display: block;
+				position: absolute;
+				z-index: 100;
+				&:before {
+					content: '';
+					display: block;
+					position: absolute;
+					width: 30px;
+					height: 30px;
+					margin: 5px 0px 0px 14px;
+					border: 1px solid #C2C6C6;
+					.radius-all(0.3em);
+					.sprite(11px -506px, -webkit-gradient(linear, left top, left bottom, from(#fff), to(#e2e3e5)));
+					text-indent: -10000px;
+				}
+				&:active, &.active {
+					&:before {
+						.sprite(11px -506px, -webkit-gradient(linear, left top, left bottom, from(#e2e3e5), to(#fff)));
+						border: 1px solid #03aaee;
+					}
+				}
+			}
+		}
+
+		section {
+			display: block;
+			height: 100%;
+			-webkit-overflow-scrolling: touch;
+			overflow: scroll;
+			&.no-scroll {
+				-webkit-overflow-scrolling: none;
+				overflow: hidden;
+			}
+			&.keyboard-visible {
+				height: 150px;
+			}
+			padding: 9px 15px 15px 15px;
+			font-size: 13px;
+			p {
+				font-size: 13px;
+				margin-bottom: 0px;
+			}
+			h1 {
+				color: #00aeef;
+				font-size: 65px;
+				line-height: 65px;
+				margin-top: 0px;
+				margin-bottom: 15px;
+				span {
+					color: #6ad2f7;
+				}
+			}
+			ul {
+				list-style: none;
+				margin: -9px -15px -15px -15px;
+				padding: 0px;
+				line-height: 42px;
+				li {
+					display: block;
+					padding-left: 15px;
+					border-bottom: 1px solid #ccc;
+					&.search {
+						background: -webkit-gradient(linear, left top, left bottom, from(#e7e6ea), to(#b3b8be));
+						height: 26px;
+						padding: 0px 35px 5px 0px;
+						margin-bottom: -1px;
+						input {
+							position: relative;
+							z-index: 1;
+							top: -5px;
+							margin: -5px 0px 0px 5px;
+							padding-left: 20px;
+							height: 16px;
+							width: 100%;
+							.radius-all(10px);
+							&.default {
+								color: #d4d5d5;
+							}
+						}
+					}
+					&.divider {
+						border: 0px;
+						font-size: 14px;
+						font-weight: bold;
+						height: 23px;
+						line-height: 23px;
+						color: #fff;
+						.sprite-bar;
+						a {
+							color: #fff;
+							&:before {
+								display: none;
+							}
+							&:active, &.active {
+								background-color: transparent;
+							}
+						}
+					}
+					div {
+						display: inline-block;
+						&:first-child {
+							width: 70%;
+						}
+						&:nth-child(2) {
+							width: 20%;
+						}
+						&:last-child {
+							width: 10%;
+						}
+					}
+					a {
+						overflow: hidden;
+						white-space: nowrap;
+						text-overflow: ellipsis;
+						color: #000;
+						text-decoration: none;
+						margin-right: 35px;
+						display: block;
+					}
+					> a {
+						margin-left: -15px;
+						padding-left: 15px;
+						&:before {
+							content: '';
+							display: block;
+							position: absolute;
+							.sprite-arrow;
+							.sprite(0px -573px);
+							height: 42px;
+							right: 0px;
+							padding-right: 15px;
+						}
+					}
+				}
+			}
+		}
+
+		&#links {
+			section {
+				ul {
+					line-height: normal;
+					li {
+						padding-bottom: 11px;
+						background: none;
+						a {
+							.arrow-link;
+							&:before {
+								display: none;
+							}
+						}
+						span {
+							color: #ea650d;
+						}
+					}
+				}
+			}
+		}
+
+		&#home, &#splash, &#loading {
+			section {
+				padding: 15px 29px 29px 29px;
+			}
+		}
+
+		&#loading {
+			footer {
+				ul {
+					display: none;
+				}
+			}
+		}
+
+		&#videos {
+			section {
+				padding-left: 15px;
+				ul {
+					li {
+						display: block;
+						height: 55px;
+						padding-top: 5px;
+						padding-bottom: 5px;
+						> div {
+							height: 55px;
+							display: block;
+							> .video-placeholder {
+								height: 55px;
+								width: 100px;
+							}
+						}
+						> div:first-child {
+							width: 100px;
+						}
+						> div:last-child {
+							width: auto;
+							margin-top: -60px;
+							padding-left: 100px;
+							padding-right: 40px;
+						}
+						h2 {
+							color: #ee7f00;
+						}
+						h2, p {
+							font-size: 100%;
+							line-height: 100%;
+							margin: 10px;
+						}
+						clear: both;
+					}
+				}
+			}
+		}
+
+		footer {
+			height: 1px;
+			.buttons {
+				padding: 12px 15px 12px 15px;
+				border-top: 1px solid #b3b3b3;
+			}
+			ul {
+				display: block;
+				font-size: 0px;
+				list-style: none;
+				margin: 0px;
+				padding: 0px;
+				width: 100%;
+				height: 54px;
+				border-top: 1px solid #b3b3b3;
+				background: #000;
+				&.tabbar-game {
+					li {
+						width: 25%;
+					}
+				}
+				li {
+					display: block;
+					float: left;
+					width: 20%;
+					height: 54px;
+					text-align: center;
+					border-top: 1px solid rgba(255, 255, 255, .3);
+					background: -webkit-gradient(linear, left top, left bottom, from(#2e2e2e), to(#000));
+					a {
+						display: block;
+						height: 54px;
+						line-height: 80px;
+						width: 100%;
+						color: #ebebeb;
+						font-size: 12px;
+						text-decoration: none;
+						position: relative;
+						.icon {
+							.sprite-tab-icons;
+							display: block;
+							height: 24px;
+							width: 40px;
+							left: 50%;
+							margin-left: -20px;
+							position: absolute;
+							margin-top: -75px;
+						}
+						&.abc .icon {
+							background-position-x: 0px;
+						}
+						&.videos .icon {
+							background-position-x: -40px;
+						}
+						&.profiles .icon {
+							background-position-x: -80px;
+						}
+						&.game .icon {
+							background-position-x: -120px;
+						}
+						&.share .icon, &.game-share .icon {
+							background-position-x: -160px;
+						}
+						&.game-play .icon {
+							background-position-x: -200px;
+						}
+						&.home .icon {
+							background-position-x: -240px;
+						}
+						&:active, &.active {
+							color: #ebebeb;
+							.icon {
+								background-position-y: -135px;
+							}
+							background: -webkit-gradient(linear, left top, left bottom, from(#474747), to(#252525));
+							.radius-all(.3em);
+						}
+					}
+				}
+			}
+		}
+	}
+
+/* RETINA ICONS */
+	@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+		article footer ul li a {
+			.icon {
+				background-position-y: -5px;
+				.sprite-half-size;
+			}
+			&.active, &:active {
+				.icon {
+					background-position-y: -30px;
+				}
+			}
+		}
+	}
+
+.ipad {
+	article {
+		section {
+			&.keyboard-visible {
+				height: 100%;
+			}
+		}
+	}
+}
