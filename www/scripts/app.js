@@ -1,6 +1,6 @@
 App = changer.pg.App.extend({
 	postInitialize: function() {
-		this.hello();
+		//this.hello();
 	},
 	hello: function() {
 		this.alert('HELLO_WORLD');
