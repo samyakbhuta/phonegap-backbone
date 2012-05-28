@@ -11,10 +11,12 @@ Boilerplate for getting cross-platform mobile apps out using the beauty of backb
 * Underscore.js 1.3.1
 * Zepto v1.0rc1
 
-## Requirements
+## Tips
 
-To run on local machine you need Python >= 2.7 
+Although this framework/boilerplate is built for mobile device, chances are that you will be testing on desktop browsers. To do so, run following command. Obviously you need to have Python installed.
+By default, it runs on port 8000 
 
 ```sh
 python -m SimpleHTTPServer
 ```
+## Docs
