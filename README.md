@@ -19,4 +19,3 @@ By default, it runs on port 8000
 ```sh
 python -m SimpleHTTPServer
 ```
-## Docs
